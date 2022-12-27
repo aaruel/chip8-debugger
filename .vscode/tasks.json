@@ -6,7 +6,7 @@
         {
             "label": "debug-build-chip8",
             "type": "shell",
-            "command": "odin build chip8 -debug -out:${workspaceFolder}/bin/cpu.exe"
+            "command": "odin build src -debug -out:${workspaceFolder}/bin/cpu.exe"
         }
     ]
 }

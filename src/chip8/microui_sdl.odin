@@ -1,4 +1,4 @@
-package main
+package chip8
 
 import "vendor:sdl2"
 import "vendor:microui"

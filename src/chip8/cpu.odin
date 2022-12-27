@@ -1,4 +1,4 @@
-package main
+package chip8
 
 import "core:fmt"
 import "core:mem"

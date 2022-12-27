@@ -1,4 +1,4 @@
-package main
+package chip8
 
 import "vendor:sdl2"
 import "vendor:microui"
@@ -199,6 +199,8 @@ tick_debugger_sdl :: proc(debugger: ^Debugger_SDL, cpu: ^CpuState) {
                     }
 
                     bytes, ok := os.read_entire_file_from_handle(fd)
+                    defer delete(bytes)
+
                     if !ok {
                         return
                     }

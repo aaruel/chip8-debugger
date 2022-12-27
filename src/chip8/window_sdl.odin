@@ -1,4 +1,4 @@
-package main
+package chip8
 
 import "vendor:sdl2"
 import "core:fmt"
@@ -47,7 +47,7 @@ tick_window_sdl :: proc(ret: ^Window_SDL) {
         for k,v in ret.event_cbs {
             k(v, &event)
         }
-        
+
         #partial switch event.type {
             case .QUIT: {
                 ret.should_close = true

@@ -3,8 +3,11 @@ package main
 import "core:time"
 import "core:fmt"
 import "core:mem"
+import "chip8"
 
 main :: proc() {
+    using chip8
+
     // set up a custom allocator so we can catch leaks
     track: mem.Tracking_Allocator
     mem.tracking_allocator_init(&track, context.allocator)

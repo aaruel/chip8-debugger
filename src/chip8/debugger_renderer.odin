@@ -1,4 +1,4 @@
-package main
+package chip8
 
 Debugger :: struct {
     window: ^Window,
