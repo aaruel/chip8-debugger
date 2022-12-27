@@ -38,8 +38,8 @@ main :: proc() {
 
     if len(track.allocation_map) > 0 {
         fmt.println()
-		for _, v in track.allocation_map {
-			fmt.printf("%v Leaked %v bytes.\n", v.location, v.size)
-		}
+        for _, v in track.allocation_map {
+            fmt.printf("%v Leaked %v bytes.\n", v.location, v.size)
+        }
     }
 }

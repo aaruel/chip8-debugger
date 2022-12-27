@@ -102,7 +102,7 @@ mu_set_clip_rect :: proc(window: ^Window_SDL, clip: ^microui.Command_Clip) {
 mu_draw_icon :: proc(obj: ^Microui_SDL, window: ^Window_SDL, ic: ^microui.Command_Icon) {
     icon := microui.default_atlas[int(ic.id)]
     x := ic.rect.x + (ic.rect.w - icon.w) / 2
-	y := ic.rect.y + (ic.rect.h - icon.h) / 2
+    y := ic.rect.y + (ic.rect.h - icon.h) / 2
     atlas_quad(obj, window, {x, y, icon.w, icon.h}, icon, ic.color)
 }
 
@@ -111,29 +111,29 @@ mu_draw_rect :: proc(obj: ^Microui_SDL, window: ^Window_SDL, rect: ^microui.Comm
 }
 
 mu_draw_text :: proc(obj: ^Microui_SDL, window: ^Window_SDL, using text: ^microui.Command_Text) {
-	dst := microui.Rect{ text.pos.x, text.pos.y, 0, 0 };
-	for ch in text.str {
-		if ch&0xc0 == 0x80 do continue;
-		chr := min(int(ch), 127);
-		src := microui.default_atlas[microui.DEFAULT_ATLAS_FONT + chr]
-		dst.w = src.w;
-		dst.h = src.h;
-		atlas_quad(obj, window, dst, src, color);
-		dst.x += dst.w;
-	}
+    dst := microui.Rect{ text.pos.x, text.pos.y, 0, 0 };
+    for ch in text.str {
+        if ch&0xc0 == 0x80 do continue;
+        chr := min(int(ch), 127);
+        src := microui.default_atlas[microui.DEFAULT_ATLAS_FONT + chr]
+        dst.w = src.w;
+        dst.h = src.h;
+        atlas_quad(obj, window, dst, src, color);
+        dst.x += dst.w;
+    }
 }
 
 mu_get_text_width :: proc(font: microui.Font, text: string) -> (res: i32) {
-	for ch in text {
-		if ch&0xc0 == 0x80 do continue
-		chr := min(int(ch), 127)
-		res += microui.default_atlas[microui.DEFAULT_ATLAS_FONT + chr].w
-	}
-	return
+    for ch in text {
+        if ch&0xc0 == 0x80 do continue
+        chr := min(int(ch), 127)
+        res += microui.default_atlas[microui.DEFAULT_ATLAS_FONT + chr].w
+    }
+    return
 }
 
 mu_get_text_height :: proc(font: microui.Font) -> i32 {
-	return 18
+    return 18
 }
 
 mu_draw :: proc(obj: ^Microui_SDL, window: ^Window_SDL) {
@@ -155,9 +155,9 @@ mu_draw :: proc(obj: ^Microui_SDL, window: ^Window_SDL) {
 
 @(private="file")
 atlas_quad :: proc(obj: ^Microui_SDL, window: ^Window_SDL, dst, src: microui.Rect, using color: microui.Color) {
-	src := transmute(sdl2.Rect) src
-	dst := transmute(sdl2.Rect) dst
-	sdl2.SetTextureAlphaMod(obj.res_atlas, a)
-	sdl2.SetTextureColorMod(obj.res_atlas, r, g, b)
-	sdl2.RenderCopy(window.renderer, obj.res_atlas, &src, &dst)
+    src := transmute(sdl2.Rect) src
+    dst := transmute(sdl2.Rect) dst
+    sdl2.SetTextureAlphaMod(obj.res_atlas, a)
+    sdl2.SetTextureColorMod(obj.res_atlas, r, g, b)
+    sdl2.RenderCopy(window.renderer, obj.res_atlas, &src, &dst)
 }
